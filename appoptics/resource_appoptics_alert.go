@@ -406,6 +406,7 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	if d.HasChange("description") {
 		alert.Description = d.Get("description").(string)
 	}
+	fmt.Println(fmt.Sprintf("If active has change: %t", d.HasChange("active")))
 	if d.HasChange("active") {
 		alert.Active = d.Get("active").(bool)
 	}
