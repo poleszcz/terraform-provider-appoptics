@@ -182,7 +182,7 @@ func resourceAppOpticsAlertCreate(d *schema.ResourceData, meta interface{}) erro
 		alert.Description = v.(string)
 	}
 	// GetOK returns not OK for false boolean values, use Get
-	alert.Active = d.Get("active").(bool)
+	*alert.Active = d.Get("active").(bool)
 	if v, ok := d.GetOk("rearm_seconds"); ok {
 		alert.RearmSeconds = v.(int)
 	}
@@ -417,7 +417,7 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	log.Println(fmt.Sprintf("If active has change: %t", d.HasChange("active")))
 	if d.HasChange("active") {
 		log.Println(fmt.Sprintf("Active has changed to: %t", d.Get("active").(bool)))
-		alert.Active = d.Get("active").(bool)
+		*alert.Active = d.Get("active").(bool)
 	}
 	if d.HasChange("rearm_seconds") {
 		alert.RearmSeconds = d.Get("rearm_seconds").(int)
@@ -563,7 +563,7 @@ func alertToAlertRequest(a *appoptics.Alert) *appoptics.AlertRequest {
 	aReq.ID = a.ID
 	aReq.Name = a.Name
 	aReq.Description = a.Description
-	aReq.Active = a.Active
+	*aReq.Active = a.Active
 	aReq.RearmSeconds = a.RearmSeconds
 	aReq.Conditions = a.Conditions
 	aReq.Attributes = a.Attributes
