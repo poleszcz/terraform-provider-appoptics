@@ -81,4 +81,4 @@ require (
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )
 
-replace github.com/appoptics/appoptics-api-go v0.5.5 => github.com/poleszcz/appoptics-api-go v1.0.0
+replace github.com/appoptics/appoptics-api-go v0.5.5 => github.com/poleszcz/appoptics-api-go v1.0.1

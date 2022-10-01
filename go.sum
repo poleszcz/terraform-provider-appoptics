@@ -268,8 +268,8 @@ github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/pkg/sftp v1.10.1/go.mod h1:lYOWFsE0bwd1+KfKJaKeuokY15vzFx25BLbzYYoAxZI=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/poleszcz/appoptics-api-go v1.0.0 h1:Fsy1HxlpijjUvGrbU/AAY+Ytzlbrk++Oh499jrZnGw0=
-github.com/poleszcz/appoptics-api-go v1.0.0/go.mod h1:ZcQ4zdutxp6Y684MsVurKyZEVO8dhrO1t8VXY+9p6Kw=
+github.com/poleszcz/appoptics-api-go v1.0.1 h1:pgKG1Np/cBRh0S0s2p0cV1s/Cfl4+xzYZka+KtO0BJE=
+github.com/poleszcz/appoptics-api-go v1.0.1/go.mod h1:ZcQ4zdutxp6Y684MsVurKyZEVO8dhrO1t8VXY+9p6Kw=
 github.com/posener/complete v1.1.1/go.mod h1:em0nMJCgc9GFtwrmVmEMR/ZL6WyhyjMBndrE9hABlRI=
 github.com/posener/complete v1.2.1 h1:LrvDIY//XNo65Lq84G/akBuMGlawHvGBABv8f/ZN6DI=
 github.com/posener/complete v1.2.1/go.mod h1:6gapUrK/U1TAN7ciCoNRIdVC5sbdBTUh1DKN0g6uH7E=
