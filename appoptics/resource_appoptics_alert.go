@@ -490,6 +490,7 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	}
 
 	log.Printf("[INFO] Updating AppOptics alert: %s", alert.Name)
+	log.Printf("[INFO] Updating activity: %t", alert.Active)
 	updErr := client.AlertsService().Update(alert)
 	if updErr != nil {
 		return fmt.Errorf("Error updating AppOptics alert: %s", updErr)
