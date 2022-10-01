@@ -494,7 +494,7 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	mar2, _ := json.Marshal(alert)
 	log.Printf("[POLESZCZ2] Dumping AlertRequest in Provider: %s", string(mar2))
 	log.Printf("[INFO] Updating AppOptics alert: %s", alert.Name)
-	log.Printf("[INFO] Updating activity: %t", alert.Active)
+	log.Printf("[INFO] Updating activity: %t", *alert.Active)
 	updErr := client.AlertsService().Update(alert)
 	if updErr != nil {
 		return fmt.Errorf("Error updating AppOptics alert: %s", updErr)
