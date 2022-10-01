@@ -303,6 +303,7 @@ func resourceAppOpticsAlertRead(d *schema.ResourceData, meta interface{}) error 
 		return err
 	}
 
+	log.Println(fmt.Sprintf("Active set to: %t", alert.Active))
 	if err := d.Set("active", alert.Active); err != nil {
 		return err
 	}
@@ -408,6 +409,7 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	}
 	log.Println(fmt.Sprintf("If active has change: %t", d.HasChange("active")))
 	if d.HasChange("active") {
+		log.Println(fmt.Sprintf("Active has changed to: %t", d.Get("active").(bool)))
 		alert.Active = d.Get("active").(bool)
 	}
 	if d.HasChange("rearm_seconds") {
