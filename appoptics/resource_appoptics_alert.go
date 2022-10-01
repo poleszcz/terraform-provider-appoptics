@@ -299,6 +299,7 @@ func resourceAppOpticsAlertRead(d *schema.ResourceData, meta interface{}) error 
 
 	d.Set("name", alert.Name) //nolint
 
+	log.Println(fmt.Sprintf("Description set to: %s", alert.Description))
 	if err := d.Set("description", alert.Description); err != nil {
 		return err
 	}
@@ -404,7 +405,10 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 	if d.HasChange("name") {
 		alert.Name = d.Get("name").(string)
 	}
+
+	log.Println(fmt.Sprintf("If description has change: %t", d.HasChange("description")))
 	if d.HasChange("description") {
+		log.Println(fmt.Sprintf("Description has changed to: %s", d.Get("description").(string)))
 		alert.Description = d.Get("description").(string)
 	}
 	log.Println(fmt.Sprintf("If active has change: %t", d.HasChange("active")))
