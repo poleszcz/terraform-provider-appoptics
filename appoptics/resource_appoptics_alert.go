@@ -2,6 +2,7 @@ package appoptics
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"math"
@@ -400,6 +401,8 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 		return err
 	}
 	alert := alertToAlertRequest(theAlert)
+	mar, _ := json.Marshal(alert)
+	log.Printf("[POLESZCZ] Dumping AlertRequest in Provider: %s", string(mar))
 	alert.ID = int(id)
 
 	if d.HasChange("name") {
@@ -488,7 +491,8 @@ func resourceAppOpticsAlertUpdate(d *schema.ResourceData, meta interface{}) erro
 
 		alert.Attributes = attributeData
 	}
-
+	mar2, _ := json.Marshal(alert)
+	log.Printf("[POLESZCZ2] Dumping AlertRequest in Provider: %s", string(mar2))
 	log.Printf("[INFO] Updating AppOptics alert: %s", alert.Name)
 	log.Printf("[INFO] Updating activity: %t", alert.Active)
 	updErr := client.AlertsService().Update(alert)
