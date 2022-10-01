@@ -161,6 +161,43 @@ func TestAccAppOpticsAlertRename(t *testing.T) {
 	})
 }
 
+func TestAccAppOpticsAlertManageActive(t *testing.T) {
+	var alert appoptics.Alert
+	name := acctest.RandString(10)
+
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckAppOpticsAlertDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccCheckAppOpticsAlertConfigBasicDisabled(name),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckAppOpticsAlertExists("appoptics_alert.foobar", &alert),
+					resource.TestCheckResourceAttr(
+						"appoptics_alert.foobar", "active", "false"),
+				),
+			},
+			{
+				Config: testAccCheckAppOpticsAlertConfigBasic(name),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckAppOpticsAlertExists("appoptics_alert.foobar", &alert),
+					resource.TestCheckResourceAttr(
+						"appoptics_alert.foobar", "active", "true"),
+				),
+			},
+			{
+				Config: testAccCheckAppOpticsAlertConfigBasicDisabled(name),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckAppOpticsAlertExists("appoptics_alert.foobar", &alert),
+					resource.TestCheckResourceAttr(
+						"appoptics_alert.foobar", "active", "false"),
+				),
+			},
+		},
+	})
+}
+
 func TestAccAppOpticsAlertFullUpdate(t *testing.T) {
 	var alert appoptics.Alert
 	name := acctest.RandString(10)
@@ -289,6 +326,20 @@ func testAccCheckAppOpticsAlertConfigBasic(name string) string {
 resource "appoptics_alert" "foobar" {
     name = "%s"
 	description = "A Test Alert"
+	condition {
+		type        = "above"
+		threshold   = 10
+		metric_name = "system.cpu.utilization"
+	}
+}`, name)
+}
+
+func testAccCheckAppOpticsAlertConfigBasicDisabled(name string) string {
+	return fmt.Sprintf(`
+resource "appoptics_alert" "foobar" {
+    name = "%s"
+	description = "A Test Alert"
+	active = false
 	condition {
 		type        = "above"
 		threshold   = 10
